@@ -39,6 +39,3 @@ class Csv_Parsing :
 
 
 
-
-csv_parser = Csv_Parsing()
-print(csv_parser.read_csv_file("barometric_vs_time_data.csv"))
