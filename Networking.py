@@ -11,19 +11,23 @@ class Python_Network:
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-
-    s.bind(('127.0.0.1', 50500))
+    print ('here1')
+    host = socket.gethostname()
+    print(host)
+    s.bind((host, 25565))
+    print ('here2')
     s.listen(1)
+    print ('here3')
     while True:
+        print ('here4')
         conn, addr = s.accept()
-    with conn:
-        print('Connected by ', adrr)
-        while True:
-            filename = "data.csv"
-            file = open(filename, 'wb')
-            data = conn.recv(1024)
-            file.write(data)
-            file.close()
-            print("file has been received")
-            if not data:
-                break
+        print ('here5')
+        print ('here6')
+        filename = "data.csv"
+        file = open(filename, 'wb')
+        data = conn.recv(1024)
+        file.write(data)
+        file.close()
+        print("file has been received")
+        if not data:
+            break
