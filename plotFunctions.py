@@ -7,9 +7,8 @@ import matplotlib.pyplot as mpl
 """
 
 
-def listAdd(XVal, YVal, DatasetTuple):
+def listAdd(XVal, YVal, DatasetTuple, ExistingData):
     XList=[]
-    YList=[]
     XPos =0
     YPos =3
     VarList = DatasetTuple[0]
@@ -24,23 +23,27 @@ def listAdd(XVal, YVal, DatasetTuple):
     for i in range(len(DataBlck)):
         print(i)
         print( DataBlck[i][XPos])
-        XList.append(DataBlck[i][XPos])
+        if not(DataBlck[i][XPos] in XList):
+            XList.append(DataBlck[i][XPos])
     for i in range(len(DataBlck)):
         print(i)
         print(DataBlck[i][YPos])
-        YList.append(DataBlck[i][YPos])
+        ExistingData.append(DataBlck[i][YPos])
    
-    mpl.plot(XList, YList)
+    mpl.plot(XList, ExistingData)
     mpl.ylabel(YVal)
     mpl.xlabel(XVal)
-    mpl.show() 
+    mpl.show()
+    return ExistingData
 
 
 
 if __name__ == "__main__":
-    Data = (['Date', 'Model', 'Location', 'Barometric Pressure', 'Test1'], [['20 21 2020', '-33,22', '1000', 'TEST A'], ['20 21 2020', '-33,20', '3000', 'TEST B'], ['20 21 2020', '-33,18', '2800', 'TEST C'], ['20 21 2020', '-34,27', '1200', 'TEST D']])
- 
+    Data = (['Date', 'Model', 'Location', 'Barometric Pressure', 'Test1'], [['20 21 2020','Smangsmug', '-33,22', '1000', 'TEST A'], ['20 21 2020','Smangsmug', '-33,20', '3000', 'TEST B'], ['20 21 2020', 'ePhone', '-33,18', '2800', 'TEST C'], ['20 21 2020','Smol', '-34,27', '1200', 'TEST D']])
+    ExistingData =[]
     while 1:
-        a = input("Gib X Parameter: ") 
-        b = input("Gib Y Parameter: ")  
-        listAdd(a,b,Data)
+        a = input("Gib X Parameter, plz: ") 
+        print("Thank.")
+        b = input("Gib Y Parameter, plz: ")  
+        print("Thank.")
+        ExistingData = listAdd(a,b,Data, ExistingData)
